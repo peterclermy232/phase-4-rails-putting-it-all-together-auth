@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
       def create
         if session[:user_id]
           user = User.find(session[:user_id])
-          recipe = user.recipes.new(recipe_params)
+          recipe = user.recipes.create(recipe_params)
           if recipe.valid?
             recipe.save!
             render json: recipe, status: :created
